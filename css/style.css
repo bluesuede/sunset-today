@@ -23,6 +23,22 @@ html, body {
   display:block;
 }
 
+@-webkit-keyframes color-fade {
+  from   {  background-color:#FECEA8; }
+}
+
+@keyframes color-fade {
+  to   {  background-color:#FF847C; }
+}
+
+.do-color-fade {
+  -webkit-animation: color-fade 2s;
+  animation: color-fade 2s;
+  
+  -webkit-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+}
+
 /* Sun */
 
 #circle {
@@ -50,11 +66,11 @@ html, body {
 
 
 @-webkit-keyframes move-down {
-  to   {  top:25%; }
+  to   {  top:40%; }
 }
 
 @keyframes move-down {
-  to   {  top:25%; }
+  to   {  top:40%; }
 }
 
 .do-move-down {
@@ -88,11 +104,28 @@ html, body {
   position:absolute;
   width:100%;
   height:100%;
+  overflow:hidden;
 }
 
-.centered-box {
+.information-box {
+  
+  background-color:#2A363B;
+  color:white;
+  text-align:center;
   box-sizing:border-box;
-  padding:0.5em;
+  padding-top:3em;
+  
+  position:absolute;
+  height:50%;
+  width:120%;
+  top:50%;
+  left:-10%;
+ 
+  border-top-right-radius:50%;
+  border-top-left-radius:50%;
+  
+  
+  /*
   background-color:#2A363B;
   color:white;
   min-width:280px;
@@ -114,6 +147,7 @@ html, body {
   -ms-justify-content:center;
   -webkit-justify-content:center;
   justify-content:center;
+  */
 }
 
 #loader-and-result {
@@ -131,7 +165,7 @@ html, body {
 #footer {
   position:absolute;
   width:100%;
-  background-color:#FF847C;
+  background-color:#1F272B;
   color:white;
   height:40px;
   font-size:11px;
