@@ -1,0 +1,163 @@
+* {
+  margin:0;
+  padding:0;
+  font-family:sans-serif;
+}
+
+html {
+  background-color:#FECEA8;
+}
+
+html, body {
+  height:100%;
+}
+
+
+#page-wrap {
+  min-height:100%;
+  margin-bottom:-40.5px; /* Footer height */
+}
+
+#page-wrap:after {
+  content:"";
+  display:block;
+}
+
+/* Sun */
+
+#circle {
+	width: 200px;
+	height: 200px;
+  position:fixed;
+  left:50%;
+  top:-100px;
+  margin-left:-100px;
+  background-color:yellow;
+  border-radius:50%;
+}
+
+/*
+#circle:after {
+  width: 200px;
+	height: 200px;
+	background:yellow;
+	border-radius: 50%;
+  display: block;
+  content: '';
+  position: fixed;
+}
+*/
+
+
+@-webkit-keyframes move-down {
+  to   {  top:25%; }
+}
+
+@keyframes move-down {
+  to   {  top:25%; }
+}
+
+.do-move-down {
+  -webkit-animation: move-down 2s;
+  animation: move-down 2s;
+  
+  -webkit-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+}
+
+
+
+/* Main */
+
+.main-wrap {
+  display:-webkit-box;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:-webkit-flex;
+  display:flex;
+  
+  -ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+  align-items: center;
+  
+  -ms-justify-content:center;
+  -webkit-justify-content:center;
+  justify-content:center;
+  
+  position:absolute;
+  width:100%;
+  height:100%;
+}
+
+.centered-box {
+  box-sizing:border-box;
+  padding:0.5em;
+  background-color:#2A363B;
+  color:white;
+  min-width:280px;
+  max-width:95%;
+  height:200px;
+  text-align:center;
+  
+  display:-webkit-box;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:-webkit-flex;
+  display:flex;
+  
+  -ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+  align-items: center;
+  
+  -ms-justify-content:center;
+  -webkit-justify-content:center;
+  justify-content:center;
+}
+
+#loader-and-result {
+  margin-top:20px;
+  font-size:40px;
+}
+
+#city-country {
+  margin-top:20px;
+  font-size:12px;
+}
+
+/* Footer */
+
+#footer {
+  position:absolute;
+  width:100%;
+  background-color:#FF847C;
+  color:white;
+  height:40px;
+  font-size:11px;
+  
+  display:-webkit-box;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:-webkit-flex;
+  display:flex;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+  align-items: center;
+  
+  -ms-justify-content:center;
+  -webkit-justify-content:center;
+  justify-content:center;
+}
+
+  #footer a {
+    color:#F4F4F4;
+    text-decoration:none;
+  }
+  
+    #footer a:hover {
+      color:white;
+      text-decoration:underline;
+    }
