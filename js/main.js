@@ -4,13 +4,14 @@
         sun = document.getElementById("circle"),
         htmlElement = document.getElementById("html-element"),
         apiAnswer,
+        presentationText = '',
         googleApiAnswer;
 
     // Initializes the application
     function init() {
 
         // Prompt user for location service.
-        navigator.geolocation.getCurrentPosition( getPositionSuccess, getPositionError );
+        navigator.geolocation.getCurrentPosition( geolocationSuccess, geolocationError );
 
     }
 
@@ -20,10 +21,10 @@
      * @param object position
      *
      */
-    function getPositionSuccess( pos ) {
-console;
+    function geolocationSuccess( pos ) {
+
         var crd = pos.coords,
-            request     = new XMLHttpRequest();
+            request = new XMLHttpRequest();
 
         // Do GET request towards sunset API, call function sunsetListener when data is loaded
         // This is to get time of sunset
@@ -33,17 +34,13 @@ console;
         request.open("GET", "http://api.sunrise-sunset.org/json?lat=" + crd.latitude + "&lng=" + crd.longitude + "&date=today");
         request.send();
 
-        // Add classes to elements to do css animations
-        sun.className = "do-move-down";
-        htmlElement.className = "do-color-fade";
-
     }
 
     /**
      * Callback function for when getting the location was not successful
      *
      */
-    function getPositionError() {
+    function geolocationError() {
         alert("You have to give permission to access your location if you want this website to work.");
     }
 
@@ -73,7 +70,7 @@ console;
      * Callback function when data from Google API is loaded
      *
      */
-    googleListener = function () {
+     function googleListener() {
 
         // Parse response data from Google to JSON Object
         googleApiAnswer = JSON.parse(this.responseText);
@@ -87,8 +84,10 @@ console;
      * Using global variables googleApiAnswer and apiAnswer
      *
      */
-    formatOutputStrings = function () {
-        var timeInMinutes,
+     function formatOutputStrings() {
+        var now = new Date(),
+            nowString = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds(),
+            timeInMinutes,
             amOrPm,
             timezoneOffset = today.getTimezoneOffset(),
             timezoneAsString,
@@ -104,6 +103,22 @@ console;
 
         // Save either string "AM" or "PM" from api answer
         amOrPm = apiAnswer.substr(apiAnswer.length - 2);
+
+        if( nowString > convertTo24Hour(apiAnswer) ) {
+
+            // Add classes to elements to do css animations
+            sun.className = "do-move-up";
+            htmlElement.className = "do-sunrise-color-fade";
+            presentationText = "The sun will rise ";
+
+        } else {
+
+            // Add classes to elements to do css animations
+            sun.className = "do-move-down";
+            htmlElement.className = "do-sunset-color-fade";
+            presentationText = "The sun will set ";
+
+        }
 
         // Remove last three characters (space and AM or PM)
         apiAnswer = apiAnswer.substring(0, apiAnswer.length - 3);
@@ -169,13 +184,26 @@ console;
      * @param location string
      *
      */
-    displaySunsetTimeLocation = function (time, location) {
-        var timeParagraph = document.getElementById("loader-and-result"),
+     function displaySunsetTimeLocation(time, location) {
+        var textContainer = document.getElementById("text-in-box"),
+            timeParagraph = document.getElementById("loader-and-result"),
             locationParagraph = document.getElementById("city-country");
 
+        textContainer.textContent =presentationText;
         timeParagraph.textContent = time;
         locationParagraph.textContent = location;
     };
+
+    function convertTo24Hour(time) {
+        var hours = parseInt(time.substr(0, 2));
+        if(time.indexOf('AM') != -1 && hours == 12) {
+            time = time.replace('12', '0');
+        }
+        if(time.indexOf('PM')  != -1 && hours < 12) {
+            time = time.replace(hours, (hours + 12));
+        }
+        return time.replace(/(AM|PM)/, '');
+    }
 
     init();
 
