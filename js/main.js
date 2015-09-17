@@ -21,7 +21,7 @@
      *
      */
     function getPositionSuccess( pos ) {
-
+console;
         var crd = pos.coords,
             request     = new XMLHttpRequest();
 
