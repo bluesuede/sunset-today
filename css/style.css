@@ -89,13 +89,13 @@ html, body {
 
 @-webkit-keyframes move-up {
     to {
-        top: 0%;
+        top: 1%;
     }
 }
 
 @keyframes move-up {
     to {
-        top: 0%;
+        top: 1%;
     }
 }
 
