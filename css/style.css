@@ -151,12 +151,15 @@ html, body {
 }
 
 #loader-and-result {
-  margin-top:20px;
+  margin:10px 0;
   font-size:40px;
 }
 
 #city-country {
   margin-top:20px;
+}
+
+.info-box-text {
   font-size:12px;
 }
 

@@ -14,7 +14,8 @@
    */
   function successPosition(pos) {
     var crd = pos.coords,
-    request = new XMLHttpRequest();
+        request = new XMLHttpRequest(),
+        formattedDate = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
     
     // Add classes to elements to do css animations
     sun.className = "do-move-down";
@@ -26,7 +27,7 @@
     request.addEventListener("load", function() {
       sunsetListener(this, crd);
     }, false);
-    request.open("GET", "http://api.sunrise-sunset.org/json?lat=" + crd.latitude + "&lng=" + crd.longitude + "&date=today");
+    request.open("GET", "http://api.sunrise-sunset.org/json?lat=" + crd.latitude + "&lng=" + crd.longitude + "&date=" + formattedDate + "");
     request.send();
     
   };
@@ -163,10 +164,13 @@
    */
   displaySunsetTimeLocation = function(time, location) {
     var timeParagraph      = document.getElementById("loader-and-result"),
-        locationParagraph  = document.getElementById("city-country");
+        locationParagraph  = document.getElementById("city-country"),
+        dateSpan           = document.getElementById("date"),
+        monthNames         = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         
     timeParagraph.textContent      = time;
     locationParagraph.textContent  = location;
+    dateSpan.textContent           = today.getDate() + " " + monthNames[today.getMonth()] + " " + today.getFullYear();
   };
 
   // Ask to get the current position and call successPosition if user allows it
